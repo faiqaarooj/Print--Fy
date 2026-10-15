@@ -1,0 +1,461 @@
+/* ==========================================================================
+   Printfy Contact Section & Support Ticket Form (Figma node 70-9632)
+   ========================================================================== */
+
+.contact-section-wrap {
+  position: relative;
+  width: 100%;
+  background: #090216;
+  background-image: 
+    radial-gradient(ellipse at 50% 10%, rgba(110, 40, 210, 0.25) 0%, transparent 65%),
+    radial-gradient(circle at 80% 80%, rgba(85, 20, 180, 0.15) 0%, transparent 50%),
+    url('/screen3/3background.svg');
+  background-size: auto, auto, cover;
+  background-position: center top;
+  padding: clamp(64px, 8vw, 100px) 0 clamp(48px, 6vw, 72px);
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.contact-section-wrap.is-standalone-page {
+  min-height: 80vh;
+  padding-top: clamp(80px, 10vw, 120px);
+}
+
+.contact-stars-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(1.5px 1.5px at 15% 20%, rgba(255, 255, 255, 0.6) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 45% 10%, rgba(200, 180, 255, 0.5) 50%, transparent 100%),
+    radial-gradient(2px 2px at 75% 35%, rgba(255, 255, 255, 0.7) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 70%, rgba(180, 150, 255, 0.4) 50%, transparent 100%),
+    radial-gradient(1px 1px at 30% 80%, rgba(255, 255, 255, 0.4) 50%, transparent 100%),
+    radial-gradient(2px 2px at 60% 65%, rgba(230, 210, 255, 0.6) 50%, transparent 100%);
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.contact-container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 32px);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+/* Standalone Page Topbar */
+.contact-standalone-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.contact-back-btn {
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  color: #d8b4fe;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.contact-back-btn:hover {
+  background: rgba(139, 92, 246, 0.25);
+  color: #ffffff;
+  border-color: rgba(192, 132, 252, 0.5);
+  transform: translateX(-2px);
+}
+
+.contact-badge-pill {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #d8b4fe;
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  letter-spacing: 0.04em;
+}
+
+/* Contact Card Container */
+.contact-card {
+  position: relative;
+  background: rgba(13, 5, 33, 0.75);
+  border: 1px solid rgba(139, 92, 246, 0.22);
+  border-radius: 24px;
+  padding: clamp(28px, 4.5vw, 48px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 
+    0 24px 60px rgba(5, 1, 14, 0.7),
+    0 0 40px rgba(110, 40, 210, 0.12);
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  border-color: rgba(168, 85, 247, 0.32);
+}
+
+/* Header */
+.contact-header {
+  margin-bottom: clamp(24px, 3.5vw, 32px);
+}
+
+.contact-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(26px, 3.4vw, 34px);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+}
+
+.contact-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(14px, 1.4vw, 15.5px);
+  color: #9f93ba;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Banner Alerts */
+.contact-success-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: #a7f3d0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  margin-bottom: 24px;
+  animation: fadeIn 0.3s ease;
+}
+
+.contact-success-banner strong {
+  display: block;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+
+.contact-success-banner p {
+  margin: 0;
+  color: rgba(209, 250, 229, 0.85);
+}
+
+.success-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: #10b981;
+  color: #064e3b;
+  font-weight: 900;
+  font-size: 13px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.contact-error-banner {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: #fca5a5;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Form Layout */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field-group.full-width {
+  width: 100%;
+}
+
+.field-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+/* Input Styles */
+.contact-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(14, 5, 34, 0.7);
+  border: 1px solid rgba(139, 92, 246, 0.24);
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #ffffff;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.contact-input::placeholder {
+  color: rgba(159, 147, 186, 0.45);
+  font-weight: 400;
+}
+
+.contact-input:focus {
+  border-color: #8b5cf6;
+  background: rgba(16, 6, 40, 0.85);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.18);
+}
+
+/* Select Dropdown Styling */
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.contact-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  padding-right: 40px;
+}
+
+.contact-select option {
+  background: #140730;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.select-chevron {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(159, 147, 186, 0.6);
+  font-size: 13px;
+  pointer-events: none;
+}
+
+/* Textarea */
+.contact-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.5;
+}
+
+/* File Upload Box (Row 4) */
+.file-upload-box {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px dashed rgba(139, 92, 246, 0.3);
+  border-radius: 12px;
+  padding: 14px 18px;
+  background: rgba(14, 5, 34, 0.4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.file-upload-box:hover {
+  border-color: rgba(168, 85, 247, 0.55);
+  background: rgba(22, 8, 52, 0.5);
+}
+
+.file-upload-box.has-file {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.06);
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.upload-left-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.paperclip-icon {
+  color: rgba(180, 165, 215, 0.7);
+  flex-shrink: 0;
+}
+
+.upload-placeholder-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  color: rgba(185, 175, 210, 0.65);
+}
+
+.file-name-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  color: #e2e8f0;
+}
+
+.file-name-text strong {
+  color: #a7f3d0;
+}
+
+.upload-optional-tag {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(159, 147, 186, 0.5);
+}
+
+.remove-file-btn {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.remove-file-btn:hover {
+  background: rgba(239, 68, 68, 0.4);
+  color: #ffffff;
+}
+
+/* Contact Form Footer Row (Row 5) */
+.contact-form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  gap: 20px;
+}
+
+.contact-privacy-note {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: rgba(159, 147, 186, 0.65);
+  margin: 0;
+  max-width: 400px;
+}
+
+.contact-send-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14.5px;
+  font-weight: 600;
+  padding: 13px 28px;
+  border-radius: 9999px;
+  border: 1px solid rgba(192, 132, 252, 0.3);
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.35);
+  cursor: pointer;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+}
+
+.contact-send-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  box-shadow: 0 6px 26px rgba(124, 58, 237, 0.55);
+  transform: translateY(-2px);
+  border-color: rgba(216, 180, 254, 0.6);
+}
+
+.contact-send-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.contact-send-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.send-arrow-icon {
+  transition: transform 0.2s ease;
+}
+
+.contact-send-btn:hover:not(:disabled) .send-arrow-icon {
+  transform: translate(2px, -2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+@media (max-width: 768px) {
+  .contact-card {
+    padding: 24px 20px;
+  }
+
+  .form-row-two-col {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .contact-form-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .contact-privacy-note {
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .contact-send-btn {
+    width: 100%;
+  }
+}

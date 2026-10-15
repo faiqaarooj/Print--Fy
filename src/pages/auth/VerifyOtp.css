@@ -1,0 +1,209 @@
+/* VerifyOtp Page CSS - Figma Token Alignment (node 402:26728) */
+
+.otp-card {
+  position: relative;
+  width: 100%;
+  max-width: 559px;
+  margin: 0 auto;
+  border-radius: clamp(28px, 6vw, 50px);
+  padding: clamp(2rem, 5vw, 3.25rem) clamp(1.25rem, 5vw, 3.25rem) clamp(1.75rem, 4vw, 2.75rem);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 2px 6px 12px 0px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(114, 77, 172, 0.53);
+  overflow: hidden;
+
+  /* Solid fallback */
+  background-color: rgba(21, 4, 48, 0.94);
+}
+
+@supports (backdrop-filter: blur(4.5px)) or (-webkit-backdrop-filter: blur(4.5px)) {
+  .otp-card {
+    background-color: rgba(21, 4, 48, 0.64);
+    backdrop-filter: blur(4.5px);
+    -webkit-backdrop-filter: blur(4.5px);
+  }
+}
+
+.otp-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(114, 77, 172, 0.22) 0%,
+    rgba(193, 168, 232, 0.08) 27%,
+    rgba(11, 1, 26, 0.2) 100%
+  );
+  z-index: 0;
+}
+
+.otp-content-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.otp-title {
+  font-family: var(--font-poppins, 'Poppins', sans-serif);
+  font-weight: 700;
+  font-size: clamp(30px, 5vw, 44px);
+  line-height: 1.2;
+  color: #fbfbfb;
+  margin: 0 0 clamp(20px, 3.5vw, 30px);
+  letter-spacing: -0.5px;
+}
+
+.otp-error-banner {
+  width: 100%;
+  max-width: 380px;
+  background: rgba(239, 68, 68, 0.18);
+  border: 1px solid rgba(239, 68, 68, 0.55);
+  color: #fca5a5;
+  font-family: var(--font-inter, 'Inter', sans-serif);
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.otp-info-banner {
+  width: 100%;
+  max-width: 380px;
+  background: rgba(147, 51, 234, 0.18);
+  border: 1px solid rgba(147, 51, 234, 0.5);
+  color: #e9d5ff;
+  font-family: var(--font-inter, 'Inter', sans-serif);
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.otp-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.otp-group-container {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: clamp(16px, 2.5vw, 22px);
+  border: none;
+  padding: 0;
+  margin-inline: 0;
+}
+
+.otp-label {
+  font-family: var(--font-poppins, 'Poppins', sans-serif);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0.78px;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.otp-boxes-row {
+  display: flex;
+  gap: clamp(8px, 2vw, 14px);
+  width: 100%;
+  justify-content: space-between;
+}
+
+.otp-digit-input {
+  width: clamp(48px, 9vw, 62px);
+  height: clamp(50px, 9.5vw, 62px);
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 2px solid transparent;
+  font-family: var(--font-poppins, 'Poppins', sans-serif);
+  font-size: clamp(20px, 4vw, 26px);
+  font-weight: 600;
+  color: #171821;
+  text-align: center;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.otp-digit-input:focus {
+  background-color: #ffffff;
+  border-color: #f4c453;
+  box-shadow: 0 0 0 3px rgba(244, 196, 83, 0.35);
+  transform: translateY(-1px);
+}
+
+.otp-resend-row {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0;
+  margin-bottom: clamp(20px, 3.2vw, 28px);
+}
+
+.otp-resend-text {
+  font-family: var(--font-inter, 'Inter', sans-serif);
+  font-weight: 400;
+  font-size: 11px;
+  color: #ffffff;
+}
+
+.otp-submit-btn {
+  position: relative;
+  width: 100%;
+  max-width: 348px;
+  height: 48px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #faf6f6;
+  font-family: var(--font-poppins, 'Poppins', sans-serif);
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  background: linear-gradient(180deg, #7e51e6 0%, #4f2294 100%);
+  box-shadow: 0 4px 14px rgba(114, 55, 201, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+  overflow: hidden;
+}
+
+.otp-submit-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(138, 77, 232, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.otp-submit-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.otp-submit-btn:focus-visible {
+  outline: 2px solid #f4c453;
+  outline-offset: 3px;
+}
+
+.otp-submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}

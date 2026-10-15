@@ -1,0 +1,394 @@
+/* ==========================================================================
+   Campus Installation Banner Component CSS
+   Figma Node: 383:24217, 395:25491, 395:25492, 395:25495
+   Placed directly after the CTA banner on the landing page
+   ========================================================================== */
+
+.campus-installation-section {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  background: #ffffff;
+  color: #060505;
+  padding: clamp(3.5rem, 5.5vw, 5.5rem) 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.campus-installation-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(2rem, 5vw, 5rem);
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Left Column: Printer Artwork (Node 383:24217)
+   ========================================================================== */
+.campus-printer-column {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.printer-artwork-canvas {
+  position: relative;
+  width: 423px;
+  height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.printer-assembly {
+  position: relative;
+  width: 423px;
+  height: 460px;
+}
+
+/* Feet */
+.printer-feet-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  z-index: 1;
+}
+
+.printer-foot {
+  position: absolute;
+  background-color: #a79d8e;
+  height: 38px;
+  width: 70px;
+  top: 385px;
+  border-radius: 0 0 10px 10px;
+}
+
+.printer-foot-left {
+  left: 72.4px;
+}
+
+.printer-foot-right {
+  left: 283.4px;
+}
+
+/* Lower Body & Output Tray Bay (Node 383:24221) */
+.printer-lower-body {
+  position: absolute;
+  top: 228px;
+  left: 2.9px;
+  width: 420px;
+  height: 170px;
+  border: 1px solid #b9af9f;
+  border-radius: 10px 10px 28px 28px;
+  box-shadow: 0px 28px 22.5px rgba(36, 6, 57, 0.3);
+  box-sizing: border-box;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.printer-lower-gradient {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: linear-gradient(164.2deg, rgb(221, 213, 199) 6.17%, rgb(187, 178, 163) 93.83%);
+  box-shadow: inset 0px 2px 0px 0px rgba(255, 255, 255, 0.56);
+}
+
+.printer-output-cavity {
+  position: absolute;
+  top: 30px;
+  left: 62px;
+  width: 294px;
+  height: 66px;
+  border-radius: 8px 8px 25px 25px;
+  background-color: #3e3938;
+  box-shadow: inset 0px 12px 18px 0px rgba(0, 0, 0, 0.35);
+}
+
+/* Upper Main Shell & Top Panel (Node 383:24223) */
+.printer-upper-body {
+  position: absolute;
+  top: 84px;
+  left: 27.9px;
+  width: 370px;
+  height: 170px;
+  border: 1px solid #bcb2a2;
+  border-radius: 27px 27px 11px 11px;
+  box-shadow: 0px 24px 22.5px rgba(38, 7, 59, 0.28);
+  box-sizing: border-box;
+  z-index: 4;
+}
+
+.printer-upper-gradient {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image:
+    linear-gradient(155.3deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0) 30%),
+    linear-gradient(162.2deg, rgb(231, 224, 210) 6.17%, rgb(201, 192, 177) 93.83%);
+  box-shadow: inset 0px 2px 0px 0px rgba(255, 255, 255, 0.67);
+  pointer-events: none;
+}
+
+/* Top Paper Intake Slot */
+.printer-feed-slot {
+  position: absolute;
+  top: 28px;
+  left: 42px;
+  width: 284px;
+  height: 13px;
+  border-radius: 8px;
+  background-color: #524b47;
+  box-shadow: inset 0px 3px 4px 0px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+/* LCD Ready Screen */
+.printer-lcd-screen {
+  position: absolute;
+  top: 97px;
+  left: 195px;
+  width: 125px;
+  height: 28px;
+  background-color: #b9bd99;
+  border: 1px solid #8f8b79;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.18);
+  box-sizing: border-box;
+}
+
+.printer-lcd-text {
+  font-family: 'Cousine', 'SF Mono', 'Courier New', monospace;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #56594b;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Circular Buttons Cluster */
+.printer-buttons-cluster {
+  position: absolute;
+  top: 103px;
+  left: 111px;
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  pointer-events: none;
+}
+
+.printer-hardware-btn {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: 1px solid #9b9182;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.7);
+  box-sizing: border-box;
+}
+
+/* Printed Paper Sheet: LET'S TALK. (Node 383:24231) */
+.printer-paper-sheet {
+  position: absolute;
+  top: 243px;
+  left: 72.9px;
+  width: 280px;
+  height: 195px;
+  background-color: #ffffff;
+  border-radius: 4px 4px 21px 70px;
+  box-shadow: 0px 22px 17.5px rgba(31, 5, 49, 0.23);
+  padding: 38px 38px 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 5;
+}
+
+.paper-headline {
+  width: 100%;
+}
+
+.paper-headline-text {
+  display: block;
+  font-family: var(--font-poppins, 'Poppins', sans-serif);
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -1.4px;
+  color: #6626a8;
+  text-transform: uppercase;
+}
+
+/* Purple Brand Badge on the Paper Sheet */
+.paper-brand-badge {
+  position: absolute;
+  bottom: 24px;
+  right: 33px;
+  width: 34px;
+  height: 34px;
+  background-color: #6626a8;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(102, 38, 168, 0.3);
+}
+
+.paper-brand-letter {
+  font-family: var(--font-geist, var(--font-inter, 'Inter', sans-serif));
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Right Column: Copy & Action (Node 395:25492 & 395:25495)
+   ========================================================================== */
+.campus-copy-column {
+  flex: 1;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.campus-copy-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.campus-headline {
+  font-family: var(--font-poppins, 'Poppins', sans-serif);
+  font-size: clamp(32px, 3.8vw, 44px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #060505;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.campus-description {
+  font-family: var(--font-geist, var(--font-inter, 'Inter', sans-serif));
+  font-size: clamp(16px, 1.4vw, 18px);
+  font-weight: 400;
+  line-height: 1.45;
+  color: rgba(8, 8, 8, 0.72);
+  margin: 0;
+  max-width: 540px;
+}
+
+.campus-action-wrapper {
+  margin-top: 14px;
+}
+
+/* Pill CTA Button (Node 395:25495) */
+.campus-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 32px;
+  border: 1.5px solid #060505;
+  background: transparent;
+  color: #060505;
+  border-radius: 9999px;
+  font-family: var(--font-poppins, 'Poppins', sans-serif);
+  font-size: 17px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.campus-btn-arrow {
+  display: inline-block;
+  font-size: 18px;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.campus-contact-btn:hover {
+  background-color: #060505;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.campus-contact-btn:hover .campus-btn-arrow {
+  transform: translateX(4px);
+}
+
+.campus-contact-btn:active {
+  transform: translateY(0);
+}
+
+.campus-contact-btn:focus-visible {
+  outline: 2px solid #6626a8;
+  outline-offset: 4px;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+/* Tablet & Mobile Screens */
+@media (max-width: 991px) {
+  .campus-installation-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 3rem;
+  }
+
+  .campus-copy-column {
+    align-items: center;
+  }
+
+  .campus-copy-wrapper {
+    align-items: center;
+  }
+
+  .campus-description {
+    text-align: center;
+  }
+}
+
+/* Mobile Screens below 480px */
+@media (max-width: 480px) {
+  .campus-installation-section {
+    padding: 3rem 0;
+  }
+
+  .printer-artwork-canvas {
+    width: 320px;
+    height: 350px;
+  }
+
+  .printer-assembly {
+    transform: scale(0.76);
+    transform-origin: top center;
+  }
+
+  .campus-contact-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

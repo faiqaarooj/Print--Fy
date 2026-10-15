@@ -1,0 +1,476 @@
+/* ==========================================================================
+   Print-Fy: Queue Storytelling ("Still waiting in line?")
+   Phase 4: Pure White Canvas (#ffffff)
+   High-Contrast Two-Column Storytelling Stage
+   Reference: Figma Node & Landing Page Mockup
+   ========================================================================== */
+
+.queue-story-section {
+  position: relative;
+  width: 100%;
+  background-color: #ffffff;
+  color: #0b021f;
+  padding-block: clamp(4.5rem, 8vw, 7.5rem);
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+  box-sizing: border-box;
+  overflow-x: clip;
+  overflow-y: visible;
+  isolation: isolate;
+  z-index: 5;
+}
+
+/* Centered Content Container */
+.queue-story-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 5vw, 4.5rem);
+  box-sizing: border-box;
+}
+
+/* Main Two-Column Stage */
+.queue-story-stage {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 5.5rem);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 920px) {
+  .queue-story-stage {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  }
+}
+
+/* ==========================================================================
+   LEFT COLUMN: Headline, Detour Bullets & Action Button
+   ========================================================================== */
+
+.queue-story-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  z-index: 2;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Eyebrow Label */
+.queue-story-eyebrow {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(0.75rem, 1.6vw, 0.8125rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #7c3aed;
+  margin-bottom: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.queue-story-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #7c3aed;
+}
+
+/* Bold Black Headline (Split cleanly into two lines on desktop) */
+.queue-story-headline {
+  margin: 0 0 1.5rem 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(2.25rem, 4.8vw, 3.85rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: #0b021f;
+  text-transform: none;
+  width: 100%;
+  text-wrap: balance;
+}
+
+.queue-story-headline-line {
+  display: inline-block;
+}
+
+@media (min-width: 640px) {
+  .queue-story-headline-line:first-child::after {
+    content: '\A';
+    white-space: pre;
+  }
+}
+
+/* Context / Bullets explaining the detour of physical queues */
+.queue-story-bullets {
+  list-style: none;
+  margin: 0 0 clamp(1.75rem, 3.5vw, 2.5rem) 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.875rem, 2vw, 1.15rem);
+  max-width: 540px;
+  width: 100%;
+}
+
+.queue-story-bullet-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(0.9375rem, 1.4vw, 1.0625rem);
+  font-weight: 450;
+  line-height: 1.52;
+  color: #374151; /* Elegant dark slate for optimal readability on white */
+}
+
+.queue-story-bullet-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #7c3aed;
+  margin-top: 0.58rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.16);
+}
+
+.queue-story-bullet-text {
+  flex: 1;
+}
+
+/* Action Buttons Row */
+.queue-story-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Primary Purple Action Button ("Start uploading →") */
+.queue-story-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0 1.75rem;
+  border-radius: 9999px;
+  border: 1px solid #31036b;
+  background-color: #31036b;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(0.875rem, 1.5vw, 0.95rem);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(49, 3, 107, 0.28);
+  transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  user-select: none;
+}
+
+.queue-story-btn-primary:hover {
+  background-color: #450c8c;
+  border-color: #450c8c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(49, 3, 107, 0.38);
+}
+
+.queue-story-btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(49, 3, 107, 0.25);
+}
+
+.queue-story-btn-arrow {
+  display: inline-block;
+  font-size: 1.05rem;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+
+.queue-story-btn-primary:hover .queue-story-btn-arrow {
+  transform: translateX(4px);
+}
+
+/* Secondary Ghost Button */
+.queue-story-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0 1.625rem;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(15, 23, 42, 0.2);
+  background-color: #ffffff;
+  color: #0f172a;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(0.875rem, 1.5vw, 0.95rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+  user-select: none;
+}
+
+.queue-story-btn-secondary:hover {
+  border-color: #0f172a;
+  background-color: rgba(15, 23, 42, 0.04);
+  transform: translateY(-2px);
+}
+
+.queue-story-btn-secondary:active {
+  transform: translateY(0);
+}
+
+.queue-story-secondary-arrow {
+  display: inline-block;
+  font-size: 0.95rem;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+
+.queue-story-btn-secondary:hover .queue-story-secondary-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* ==========================================================================
+   RIGHT COLUMN: Illustration & Soft Lavender Backdrop Accent
+   ========================================================================== */
+
+.queue-story-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.queue-story-visual-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Soft Lavender Backdrop Accent (Organic Blob matching the reference crop) */
+.queue-story-backdrop-accent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(260px, 86%, 440px);
+  aspect-ratio: 1.18 / 1;
+  background: radial-gradient(ellipse at 48% 48%, #edd9fa 0%, #e8d0f8 60%, #e0c2f3 100%);
+  border-radius: 46% 54% 56% 44% / 48% 50% 50% 52%;
+  opacity: 0.88;
+  filter: drop-shadow(0 14px 34px rgba(168, 85, 247, 0.12));
+  z-index: 0;
+  pointer-events: none;
+  animation: queueBlobBreath 7s ease-in-out infinite alternate;
+}
+
+@keyframes queueBlobBreath {
+  0% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    border-radius: 46% 54% 56% 44% / 48% 50% 50% 52%;
+  }
+  100% {
+    transform: translate(-50%, -52%) scale(1.03) rotate(2deg);
+    border-radius: 52% 48% 46% 54% / 52% 46% 54% 48%;
+  }
+}
+
+/* Visual Stage with Fade In */
+.queue-story-img-stage {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: queueImageFade 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes queueImageFade {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Illustration Image */
+.queue-story-img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 440px;
+  max-height: 380px;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 32px rgba(15, 23, 42, 0.12));
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+.queue-story-visual-wrap:hover .queue-story-img {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* ==========================================================================
+   STORY PROGRESS NAVIGATOR: 4-Stage Pill Bar
+   Clean, Modern White & Soft Purple Pill Switcher
+   ========================================================================== */
+
+.queue-story-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  width: 100%;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  box-sizing: border-box;
+}
+
+.queue-story-tab {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5625rem 1.15rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  background-color: #faf5ff;
+  color: #6b21a8;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 180ms ease;
+  user-select: none;
+}
+
+.queue-story-tab:hover {
+  background-color: #f3e8ff;
+  border-color: #a855f7;
+  color: #581c87;
+  transform: translateY(-1px);
+}
+
+.queue-story-tab.is-active {
+  background-color: #31036b;
+  border-color: #31036b;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(49, 3, 107, 0.22);
+}
+
+.queue-story-tab-text {
+  letter-spacing: 0.01em;
+}
+
+/* ==========================================================================
+   RESPONSIVE ADAPTATIONS
+   ========================================================================== */
+
+@media (max-width: 919px) {
+  .queue-story-stage {
+    gap: 2.75rem;
+  }
+
+  .queue-story-visual-wrap {
+    max-width: 380px;
+  }
+
+  .queue-story-img {
+    max-height: 300px;
+  }
+
+  .queue-story-headline {
+    font-size: clamp(2rem, 5.8vw, 2.85rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .queue-story-section {
+    padding-block: 3.5rem;
+    padding-inline: 1.25rem;
+  }
+
+  .queue-story-container {
+    gap: 2.25rem;
+  }
+
+  /* Illustration comes first on compact mobile if desired, or left text first */
+  .queue-story-headline {
+    font-size: 1.95rem;
+    line-height: 1.12;
+    margin-bottom: 1.15rem;
+  }
+
+  .queue-story-bullets {
+    gap: 0.85rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .queue-story-bullet-item {
+    font-size: 0.9375rem;
+  }
+
+  .queue-story-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .queue-story-btn-primary,
+  .queue-story-btn-secondary {
+    width: 100%;
+  }
+
+  .queue-story-visual-wrap {
+    max-width: 320px;
+  }
+
+  .queue-story-img {
+    max-height: 250px;
+  }
+
+  .queue-story-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .queue-story-tab {
+    justify-content: center;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .queue-story-backdrop-accent,
+  .queue-story-img-stage,
+  .queue-story-img,
+  .queue-story-btn-primary,
+  .queue-story-btn-secondary,
+  .queue-story-btn-arrow {
+    animation: none !important;
+    transition: none !important;
+  }
+}

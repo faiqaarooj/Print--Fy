@@ -1,0 +1,909 @@
+/* ==========================================================================
+   Printfy University Pricing Page — Clean Restrained Composition
+   Adheres strictly to the visual reference & directives:
+   - Off-white page background (#fbfbfd)
+   - One pale lavender section behind pricing content (#f4effa)
+   - Dark charcoal text (#18181b, #3f3f46, #52525b)
+   - Purple accent for buttons, small labels, and featured border
+   - Modest corner radii, thin borders, very subtle shadows
+   - Aligned buttons and dividers across all three cards
+   - No starfields, glass effects, neon glows, or dramatic gradients
+   ========================================================================== */
+
+.campus-clean-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fbfbfd;
+  color: #18181b;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.clean-content-container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 40px);
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   1. Existing Public Navbar (Preserved with For Students / For Universities)
+   ========================================================================== */
+.campus-public-navbar {
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 60;
+}
+
+.pub-nav-container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 40px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+/* Brand Logo */
+.pub-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: opacity 0.18s ease;
+}
+
+.pub-brand:hover {
+  opacity: 0.88;
+}
+
+.pub-brand-logo {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+.pub-brand-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #18181b;
+  letter-spacing: -0.02em;
+}
+
+.pub-brand-tag {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6d28d9;
+  background: #ede9fe;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+}
+
+/* Nav Menu Links */
+.pub-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.pub-nav-link {
+  background: transparent;
+  border: none;
+  color: #52525b;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pub-nav-link:hover {
+  color: #6d28d9;
+}
+
+/* Pricing Dropdown */
+.pub-pricing-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.pub-pricing-btn.is-active,
+.pub-pricing-btn:focus-visible {
+  color: #6d28d9;
+  outline: none;
+}
+
+.pub-chevron-icon {
+  transition: transform 0.2s ease;
+}
+
+.pub-chevron-icon.is-rotated {
+  transform: rotate(180deg);
+}
+
+.pub-pricing-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  padding: 8px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pub-dropdown-item {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-sizing: border-box;
+}
+
+.pub-dropdown-item:hover {
+  background: #f4f4f5;
+}
+
+.pub-dropdown-item.is-current {
+  background: #f5f3ff;
+  border-left: 3px solid #6d28d9;
+  cursor: default;
+}
+
+.dropdown-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdown-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #18181b;
+}
+
+.dropdown-desc {
+  font-size: 12px;
+  color: #71717a;
+}
+
+.dropdown-pill {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #6d28d9;
+  background: #ede9fe;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Nav Actions */
+.pub-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pub-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f4f4f5;
+  border: 1px solid #e4e4e7;
+  color: #3f3f46;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.pub-back-btn:hover {
+  background: #e4e4e7;
+  color: #18181b;
+  transform: translateX(-2px);
+}
+
+.pub-back-arrow {
+  font-size: 14px;
+}
+
+.pub-contact-sales-btn {
+  background: #6d28d9;
+  border: 1px solid #6d28d9;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.18s ease;
+}
+
+.pub-contact-sales-btn:hover {
+  background: #5b21b6;
+  border-color: #5b21b6;
+}
+
+/* Toast Banner */
+.clean-toast-banner {
+  position: fixed;
+  top: 76px;
+  right: 24px;
+  background: #ffffff;
+  border: 1px solid #7c3aed;
+  box-shadow: 0 8px 24px rgba(109, 40, 217, 0.12);
+  color: #18181b;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  z-index: 1000;
+  animation: slideInToast 0.25s ease-out;
+}
+
+@keyframes slideInToast {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   2. Main Page Header Section
+   Left-aligned heading + supporting copy to its right
+   ========================================================================== */
+.clean-header-section {
+  padding: clamp(52px, 7vw, 84px) 0 clamp(44px, 5vw, 64px);
+  background: #fbfbfd;
+}
+
+.clean-header-layout {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(32px, 5vw, 64px);
+}
+
+.clean-header-left {
+  flex: 1;
+}
+
+.clean-main-heading {
+  font-family: inherit;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: #18181b;
+  margin: 0;
+  text-align: left;
+}
+
+.clean-header-right {
+  flex: 0 0 380px;
+  max-width: 420px;
+  text-align: left;
+}
+
+.clean-header-subtext {
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.55;
+  color: #52525b;
+  margin: 0;
+}
+
+/* ==========================================================================
+   3. Pale Lavender Section Behind Pricing Content
+   ========================================================================== */
+.clean-pricing-section {
+  background-color: #f4effa;
+  padding: clamp(60px, 7vw, 92px) 0 clamp(72px, 8vw, 104px);
+  border-top: 1px solid #ede5f5;
+  border-bottom: 1px solid #ede5f5;
+}
+
+/* Three Equal-Width Cards Grid */
+.clean-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 2.5vw, 32px);
+  align-items: stretch;
+}
+
+/* Individual Plan Card */
+.clean-plan-card {
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 16px;
+  padding: clamp(28px, 3vw, 36px) clamp(22px, 2.5vw, 28px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clean-plan-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+}
+
+/* Featured (Middle) Card */
+.clean-plan-card.is-featured {
+  border: 1.5px solid #7c3aed;
+  box-shadow: 0 4px 16px rgba(109, 40, 217, 0.08);
+  position: relative;
+}
+
+/* Top Meta Section (Name, Price, Desc) — Ensures aligned buttons */
+.clean-card-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.clean-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.clean-plan-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #18181b;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.clean-featured-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6d28d9;
+  background: #ede9fe;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
+}
+
+/* Pricing Text */
+.clean-price-wrap {
+  margin-bottom: 12px;
+}
+
+.clean-price-val {
+  font-size: clamp(23px, 2.6vw, 27px);
+  font-weight: 800;
+  color: #18181b;
+  letter-spacing: -0.02em;
+}
+
+/* Short Description — fixed minimum height for perfect vertical baseline */
+.clean-plan-desc {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #52525b;
+  margin: 0 0 24px 0;
+  min-height: 58px;
+}
+
+/* Action Button Wrapper */
+.clean-card-action {
+  width: 100%;
+}
+
+.clean-plan-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  box-sizing: border-box;
+}
+
+/* Middle Card: Solid Purple Button */
+.clean-plan-btn.is-solid {
+  background: #6d28d9;
+  border: 1px solid #6d28d9;
+  color: #ffffff;
+}
+
+.clean-plan-btn.is-solid:hover {
+  background: #5b21b6;
+  border-color: #5b21b6;
+}
+
+/* Outer Cards: Understated Outlined Button */
+.clean-plan-btn.is-outlined {
+  background: transparent;
+  border: 1px solid #d4d4d8;
+  color: #3f3f46;
+}
+
+.clean-plan-btn.is-outlined:hover {
+  border-color: #6d28d9;
+  color: #6d28d9;
+  background: #faf5ff;
+}
+
+.btn-arrow {
+  font-size: 14px;
+  transition: transform 0.18s ease;
+}
+
+.clean-plan-btn:hover .btn-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* Thin Divider */
+.clean-card-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #e4e4e7;
+  margin: 24px 0 20px;
+}
+
+/* Feature List */
+.clean-features-wrap {
+  flex: 1;
+}
+
+.clean-features-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #71717a;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.clean-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.clean-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #3f3f46;
+}
+
+.clean-check-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.clean-feature-text {
+  flex: 1;
+}
+
+/* ==========================================================================
+   4. University Enquiry Modal (Plan Preselected)
+   ========================================================================== */
+.enquiry-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(24, 24, 27, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.enquiry-modal-dialog {
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  width: 100%;
+  max-width: 540px;
+  padding: 32px 32px;
+  position: relative;
+  box-sizing: border-box;
+  animation: dialogScaleUp 0.22s ease-out;
+}
+
+@keyframes dialogScaleUp {
+  from {
+    transform: scale(0.97) translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.enquiry-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #f4f4f5;
+  border: none;
+  color: #71717a;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.15s ease;
+}
+
+.enquiry-modal-close:hover {
+  background: #e4e4e7;
+  color: #18181b;
+}
+
+.enquiry-modal-header {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.enquiry-modal-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #6d28d9;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.enquiry-modal-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #18181b;
+  margin: 0 0 6px 0;
+}
+
+.enquiry-modal-sub {
+  font-size: 13.5px;
+  color: #52525b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.enquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.form-group label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #3f3f46;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: #fafafa;
+  border: 1px solid #d4d4d8;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13.5px;
+  color: #18181b;
+  box-sizing: border-box;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #6d28d9;
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.12);
+  background: #ffffff;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 64px;
+}
+
+.enquiry-form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.enquiry-submit-btn {
+  background: #6d28d9;
+  border: 1px solid #6d28d9;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.18s ease;
+}
+
+.enquiry-submit-btn:hover {
+  background: #5b21b6;
+}
+
+.enquiry-privacy-note {
+  font-size: 11.5px;
+  color: #71717a;
+  text-align: center;
+}
+
+.enquiry-success-box {
+  padding: 28px 16px;
+  text-align: center;
+}
+
+.enquiry-success-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ede9fe;
+  color: #6d28d9;
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.enquiry-success-box h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #18181b;
+  margin: 0 0 8px 0;
+}
+
+.enquiry-success-box p {
+  font-size: 13.5px;
+  color: #52525b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==========================================================================
+   5. Clean Minimalist Subfooter
+   ========================================================================== */
+.clean-page-footer {
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  padding: 24px 0 32px;
+}
+
+.clean-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.clean-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.clean-footer-logo {
+  font-size: 14px;
+  font-weight: 800;
+  color: #18181b;
+}
+
+.clean-footer-copy {
+  font-size: 13px;
+  color: #71717a;
+}
+
+.clean-footer-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.clean-footer-link,
+.clean-footer-link-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 13px;
+  color: #52525b;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+
+.clean-footer-link:hover,
+.clean-footer-link-btn:hover {
+  color: #6d28d9;
+}
+
+/* ==========================================================================
+   6. Responsiveness (Desktop, Tablet, Mobile)
+   - Preserve three columns when space allows.
+   - Stack the cards on narrow screens.
+   - Move the supporting introduction below the heading.
+   - Natural wrapping, fluid padding, content-driven heights.
+   ========================================================================== */
+
+/* Tablet & Mid screens (<= 992px) */
+@media (max-width: 992px) {
+  .pub-nav-menu {
+    gap: 16px;
+  }
+
+  .clean-header-layout {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .clean-header-right {
+    flex: auto;
+    max-width: 100%;
+  }
+
+  .clean-cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin: 0 auto;
+    gap: 24px;
+  }
+
+  .clean-plan-desc {
+    min-height: auto;
+  }
+}
+
+/* Mobile Screens (<= 640px) */
+@media (max-width: 640px) {
+  .pub-nav-container {
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .pub-nav-menu {
+    display: none; /* Keep clean on small mobile, back button handles return */
+  }
+
+  .pub-brand-tag {
+    display: none;
+  }
+
+  .pub-back-btn span:last-child {
+    display: none;
+  }
+
+  .pub-contact-sales-btn {
+    padding: 6px 12px;
+    font-size: 12.5px;
+  }
+
+  .clean-header-section {
+    padding: 40px 0 32px;
+  }
+
+  .clean-main-heading {
+    font-size: 32px;
+    line-height: 1.15;
+  }
+
+  .clean-header-subtext {
+    font-size: 15px;
+  }
+
+  .clean-pricing-section {
+    padding: 48px 0 60px;
+  }
+
+  .clean-plan-card {
+    padding: 24px 20px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .enquiry-modal-dialog {
+    padding: 24px 20px;
+  }
+
+  .clean-footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

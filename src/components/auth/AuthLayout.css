@@ -1,0 +1,120 @@
+/* AuthLayout CSS */
+
+.auth-layout-root {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  background-color: #0c021f;
+  color: #ffffff;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.auth-header {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1.25rem, 5vw, 4rem) 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.auth-logo-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.auth-logo-link:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+.auth-logo-link:focus-visible {
+  outline: 2px solid #f4c453;
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+/* Reverse back arrow button */
+.auth-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #faf8f8;
+  font-family: var(--font-inter, 'Inter', sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.auth-back-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(244, 196, 83, 0.6);
+  color: #f4c453;
+  transform: translateX(-2px);
+}
+
+.auth-back-btn:focus-visible {
+  outline: 2px solid #f4c453;
+  outline-offset: 3px;
+}
+
+.auth-main-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-block: clamp(2rem, 6vw, 5rem);
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+  box-sizing: border-box;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.auth-card-shell {
+  width: 100%;
+  min-width: 0;
+  margin: 0 auto;
+  position: relative;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .auth-header {
+    padding: 1.25rem 1.25rem 0;
+  }
+
+  .auth-main-container {
+    padding-inline: 1rem;
+  }
+
+  .auth-back-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}

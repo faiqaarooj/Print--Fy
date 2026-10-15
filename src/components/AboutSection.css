@@ -1,0 +1,285 @@
+/* ==========================================================================
+   Print-Fy: About Section ("FROM CLICK / TO COLLECTED")
+   Clean Pure White Canvas & Breathable Two-Column Layout
+   Reference: User Mockup Screenshot
+   ========================================================================== */
+
+.about-section {
+  position: relative;
+  width: 100%;
+  padding-block: clamp(4.5rem, 8vw, 7.5rem);
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+  background-color: #ffffff;
+  color: #0b021f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow-x: clip;
+  overflow-y: visible;
+  isolation: isolate;
+  z-index: 5;
+}
+
+/* Scroll Anchor for navigation */
+.about-anchor {
+  position: absolute;
+  top: -80px;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Inner Centered Container */
+.about__container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  box-sizing: border-box;
+}
+
+@media (min-width: 880px) {
+  .about__container {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  }
+}
+
+/* ==========================================================================
+   Left Column: Text Content
+   ========================================================================== */
+
+.about__content-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Headline: Exactly two lines, bold uppercase black */
+.about__headline {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(2.4rem, 5.2vw, 4.25rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: #0b021f;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  text-wrap: balance;
+}
+
+.about__headline-line {
+  white-space: nowrap;
+  word-break: keep-all;
+}
+
+/* Subtitle */
+.about__subtitle {
+  margin: clamp(1.25rem, 2.5vw, 1.85rem) 0 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: #374151;
+  max-width: 32rem;
+}
+
+/* Action Buttons Group (Stacked vertically matching the crop) */
+.about__cta-group {
+  margin: clamp(1.75rem, 3.5vw, 2.5rem) 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.875rem;
+  width: auto;
+}
+
+.about__cta-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0 1.75rem;
+  border-radius: 9999px;
+  border: 1px solid #31036b;
+  background-color: #31036b;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(0.875rem, 1.4vw, 0.95rem);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(49, 3, 107, 0.28);
+  transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+  user-select: none;
+}
+
+.about__cta-primary:hover {
+  background-color: #450c8c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(49, 3, 107, 0.38);
+}
+
+.about__cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0 1.75rem;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(15, 23, 42, 0.22);
+  background-color: #ffffff;
+  color: #0f172a;
+  text-decoration: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(0.875rem, 1.4vw, 0.95rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+  user-select: none;
+}
+
+.about__cta-secondary:hover {
+  border-color: #0f172a;
+  background-color: rgba(15, 23, 42, 0.04);
+  transform: translateY(-2px);
+}
+
+.about__arrow {
+  display: inline-block;
+  font-size: 1.05rem;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+
+.about__cta-primary:hover .about__arrow,
+.about__cta-secondary:hover .about__arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   Right Column: Printer Visual
+   ========================================================================== */
+
+.about__visual-col {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.about__printer-frame {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Printer Image */
+.about__printer-img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 460px;
+  max-height: 440px;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 34px rgba(15, 23, 42, 0.12));
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+.about__printer-frame:hover .about__printer-img {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 879px) {
+  .about-section {
+    padding-block: 4rem;
+  }
+
+  .about__container {
+    gap: 3rem;
+  }
+
+  .about__headline {
+    font-size: clamp(2.2rem, 7vw, 3.25rem);
+  }
+
+  .about__printer-frame {
+    max-width: 380px;
+  }
+
+  .about__printer-img {
+    max-height: 340px;
+  }
+}
+
+@media (max-width: 580px) {
+  .about-section {
+    padding-block: 3.25rem;
+    padding-inline: 1.25rem;
+  }
+
+  .about__headline {
+    font-size: 2.1rem;
+    letter-spacing: -0.03em;
+  }
+
+  .about__subtitle {
+    font-size: 0.95rem;
+  }
+
+  .about__cta-group {
+    width: 100%;
+  }
+
+  .about__cta-primary,
+  .about__cta-secondary {
+    width: 100%;
+  }
+
+  .about__printer-frame {
+    max-width: 320px;
+  }
+
+  .about__printer-img {
+    max-height: 280px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .about-section,
+  .about__printer-img,
+  .about__cta-primary,
+  .about__cta-secondary,
+  .about__arrow {
+    animation: none !important;
+    transition: none !important;
+  }
+}

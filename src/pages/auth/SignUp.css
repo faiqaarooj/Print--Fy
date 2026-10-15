@@ -1,0 +1,167 @@
+/* SignUp Page CSS */
+
+.signup-page-root {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  background-color: #0c021f;
+  color: #ffffff;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header with Brand Logo & Back Button */
+.signup-header {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 5vw, 5rem) 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.auth-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #faf8f8;
+  font-family: var(--font-inter, 'Inter', sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.auth-back-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(244, 196, 83, 0.6);
+  color: #f4c453;
+  transform: translateX(-2px);
+}
+
+.auth-back-btn:focus-visible {
+  outline: 2px solid #f4c453;
+  outline-offset: 3px;
+}
+
+.signup-logo-link {
+  display: inline-flex;
+  align-items: flex-start;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+}
+
+.signup-logo-link:focus-visible {
+  outline: 2px solid #f4c453;
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+/* Print-Fy Official Brand Logo in Navbar / Header */
+.brand-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  text-decoration: none;
+}
+
+.brand-container:hover {
+  transform: translateY(-1px);
+}
+
+.brand-logo-img {
+  width: 95px;
+  height: auto;
+  display: block;
+}
+
+.brand-title {
+  font-family: var(--font-poppins, 'Poppins', sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  color: #ffffff;
+  margin-top: 2px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Main Layout Grid */
+.signup-main-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2.5rem) clamp(1.25rem, 5vw, 5rem) clamp(2rem, 6vw, 5rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+/* Left Column: Preview Panel */
+.signup-col-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Right Column: Card Shell */
+.signup-col-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Responsive Rules */
+/* Below 1024px: Hide preview panel, center the card */
+@media (max-width: 1023px) {
+  .signup-main-container {
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .signup-col-left {
+    display: none !important;
+  }
+
+  .signup-col-right {
+    max-width: 559px;
+    margin: 0 auto;
+  }
+}
+
+/* Mobile Adjustments (375px - 640px) */
+@media (max-width: 640px) {
+  .signup-header {
+    padding: 1.25rem 1.25rem 0;
+  }
+
+  .signup-main-container {
+    padding: 1.25rem 1.25rem 2.5rem;
+  }
+}

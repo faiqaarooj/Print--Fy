@@ -1,0 +1,640 @@
+/* ==========================================================================
+   Printfy Landing Page Pricing Section — Professional 3 All-White Cards
+   - Centered Header with Students / Universities On-Off Toggle Switch
+   - All cards in pure white (#ffffff)
+   - "Login into Print-fy" for Students / "Contact Us" for Universities
+   - Clean, icon-free header rows, aligned buttons, and footer metadata
+   ========================================================================== */
+
+.pricing-intro-section {
+  position: relative;
+  width: 100%;
+  background: #0c021f;
+  padding: clamp(2.5rem, 5vw, 4.5rem) 0 0;
+  box-sizing: border-box;
+  overflow-x: clip;
+  z-index: 5;
+}
+
+/* Cosmic Background Layer */
+.pricing-starfield {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.pricing-stars-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.65;
+}
+
+.pricing-ambient-glow {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  max-width: 950px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.22) 0%, transparent 70%);
+  filter: blur(65px);
+}
+
+/* Container */
+.pricing-intro-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 3rem);
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Section Header: Centered with On/Off Segmented Toggle Switch
+   ========================================================================== */
+.pricing-intro-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto clamp(20px, 2.5vw, 28px);
+}
+
+.pricing-eyebrow {
+  display: inline-block;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #caa8f5;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.pricing-intro-heading {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(34px, 4.5vw, 50px);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  text-align: center;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.pricing-intro-subtext {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(15px, 1.6vw, 17px);
+  font-weight: 400;
+  line-height: 1.55;
+  color: rgba(225, 215, 245, 0.85);
+  margin: 0 auto clamp(16px, 2vw, 22px);
+  text-align: center;
+  max-width: 640px;
+}
+
+/* ==========================================================================
+   Professional On/Off Segmented Switch in the Main Frame
+   ========================================================================== */
+.pricing-toggle-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: clamp(24px, 3vw, 32px);
+}
+
+.pricing-onoff-switch {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 9999px;
+  padding: 4px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.toggle-tab-btn {
+  border: none;
+  background: transparent;
+  color: rgba(235, 225, 255, 0.75);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14.5px;
+  font-weight: 600;
+  padding: 9px 28px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  white-space: nowrap;
+}
+
+.toggle-tab-btn:hover:not(.is-active) {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.toggle-tab-btn:focus-visible {
+  box-shadow: 0 0 0 2px #a855f7;
+}
+
+/* Active Segment */
+.toggle-tab-btn.is-active {
+  background: #ffffff;
+  color: #18181b;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   Three All-White Pricing Cards Grid
+   ========================================================================== */
+.pricing-white-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 2.5vw, 30px);
+  align-items: stretch;
+}
+
+/* Individual All-White Card */
+.white-pricing-card {
+  position: relative;
+  background: #ffffff; /* Pure white color */
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+  padding: 32px 28px 24px;
+  box-shadow: 
+    0 16px 36px rgba(0, 0, 0, 0.22),
+    0 4px 12px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  text-align: left;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.white-pricing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 24px 48px rgba(0, 0, 0, 0.28),
+    0 8px 20px rgba(109, 40, 217, 0.25);
+  border-color: #d8b4fe;
+}
+
+/* Middle Featured Card with Popular Border */
+.white-pricing-card.is-popular {
+  border: 2px solid #7c3aed;
+  box-shadow: 
+    0 20px 42px rgba(109, 40, 217, 0.22),
+    0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Floating POPULAR Badge */
+.card-popular-badge {
+  position: absolute;
+  top: -14px;
+  right: 28px;
+  background: #6d28d9;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  box-shadow: 0 4px 12px rgba(109, 40, 217, 0.35);
+  text-transform: uppercase;
+}
+
+/* Card Head Row: Pill Tag only (Icon removed for clean elegance) */
+.card-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.card-pill-tag {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  letter-spacing: 0.01em;
+}
+
+.card-pill-tag.tag-mono {
+  background: #f4f4f5;
+  color: #3f3f46;
+}
+
+.card-pill-tag.tag-vibrant {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.card-pill-tag.tag-volume {
+  background: #f4f4f5;
+  color: #27272a;
+}
+
+/* Card Main Title */
+.card-main-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #18181b;
+  letter-spacing: -0.015em;
+  margin: 0 0 12px 0;
+}
+
+/* Price Display */
+.card-price-display {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.price-amount {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(28px, 3.2vw, 36px);
+  font-weight: 900;
+  color: #18181b;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.price-amount.is-purple {
+  color: #6d28d9;
+}
+
+.price-unit {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #71717a;
+}
+
+/* Subtitle / Description */
+.card-description-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #52525b;
+  margin: 0 0 22px 0;
+  min-height: 42px;
+}
+
+/* Checkmarked Feature List */
+.card-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.card-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.card-check-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.card-feature-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #3f3f46;
+  font-weight: 500;
+}
+
+/* Button Container & Buttons */
+.card-btn-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.card-upload-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+/* Solid Purple for Popular Card */
+.card-upload-btn.is-solid {
+  background: #6d28d9;
+  border: 1px solid #6d28d9;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.28);
+}
+
+.card-upload-btn.is-solid:hover {
+  background: #5b21b6;
+  border-color: #5b21b6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(109, 40, 217, 0.38);
+}
+
+/* Outlined for Other Cards */
+.card-upload-btn.is-outlined {
+  background: #ffffff;
+  border: 1.5px solid #d4d4d8;
+  color: #18181b;
+}
+
+.card-upload-btn.is-outlined:hover {
+  border-color: #6d28d9;
+  color: #6d28d9;
+  background: #faf5ff;
+  transform: translateY(-2px);
+}
+
+.btn-arrow {
+  font-size: 14px;
+  transition: transform 0.2s ease;
+}
+
+.card-upload-btn:hover .btn-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* Bottom Metadata Strip */
+.card-footer-strip {
+  border-top: 1px solid #f4f4f5;
+  padding-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #71717a;
+}
+
+.footer-meta-left {
+  color: #71717a;
+}
+
+.footer-meta-right {
+  color: #52525b;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   6. Audience-Specific FAQ Section on Pure White Background
+   Major Section Vertical Gap: ~80-112px desktop, ~40-64px mobile
+   ========================================================================== */
+.landing-faq-section {
+  position: relative;
+  width: 100%;
+  margin-top: clamp(80px, 8vw, 112px);
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+.landing-faq-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 40px);
+  box-sizing: border-box;
+}
+
+.pricing-white-faq-panel {
+  background: #ffffff; /* Pure white card surface */
+  border: 1px solid #e5e7eb;
+  border-radius: 28px;
+  padding: clamp(36px, 5vw, 56px) clamp(24px, 4.5vw, 52px);
+  margin-top: 0;
+  box-shadow: 
+    0 24px 56px rgba(0, 0, 0, 0.25),
+    0 4px 16px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.faq-panel-header {
+  margin-bottom: clamp(20px, 2.5vw, 28px);
+}
+
+.faq-panel-badge {
+  display: inline-block;
+  background: #ede9fe;
+  color: #6d28d9;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.faq-panel-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #18181b;
+  margin: 0 0 8px 0;
+}
+
+.faq-panel-desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(14px, 1.5vw, 15.5px);
+  color: #52525b;
+  margin: 0;
+  line-height: 1.55;
+  max-width: 680px;
+}
+
+/* Accordion list inside white panel */
+.faq-white-accordion-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #e5e7eb;
+}
+
+.faq-white-accordion-item {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.18s ease;
+}
+
+.faq-white-accordion-item:hover {
+  background-color: #faf5ff; /* Soft lavender hover tint */
+}
+
+.faq-white-question-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 14px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  outline: none;
+  border-radius: 12px;
+  transition: background-color 0.15s ease;
+}
+
+.faq-white-question-btn:focus-visible {
+  outline: 2px solid #7c3aed;
+  outline-offset: 2px;
+}
+
+.faq-white-question-text {
+  font-size: clamp(15.5px, 1.7vw, 17.5px);
+  font-weight: 600;
+  color: #18181b;
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+}
+
+.faq-white-toggle-icon {
+  font-size: 20px;
+  font-weight: 500;
+  color: #6d28d9;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ede9fe;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-white-toggle-icon.is-expanded {
+  background: #6d28d9;
+  color: #ffffff;
+  transform: rotate(180deg);
+}
+
+/* Answer Container */
+.faq-white-answer-container {
+  display: none;
+  padding: 0 14px 22px 14px;
+}
+
+.faq-white-answer-container.is-visible {
+  display: block;
+  animation: faqAnswerSlide 0.22s ease-out;
+}
+
+@keyframes faqAnswerSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.faq-white-answer-inner {
+  padding-top: 4px;
+}
+
+.faq-white-answer-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #4b5563;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+/* Tablet (<= 992px) */
+@media (max-width: 992px) {
+  .pricing-white-cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin: 0 auto;
+    gap: 28px;
+  }
+
+  .card-description-text {
+    min-height: auto;
+  }
+}
+
+/* Mobile Screens (<= 640px) */
+@media (max-width: 640px) {
+  .pricing-intro-section {
+    padding: clamp(36px, 6vw, 48px) 0 0;
+  }
+
+  .landing-faq-section {
+    margin-top: clamp(40px, 6vw, 64px);
+  }
+
+  .toggle-tab-btn {
+    padding: 8px 20px;
+    font-size: 13.5px;
+  }
+
+  .white-pricing-card {
+    padding: 26px 20px 20px;
+    border-radius: 20px;
+  }
+
+  .pricing-white-faq-panel {
+    padding: 28px 18px;
+    border-radius: 20px;
+    margin-top: 0;
+  }
+
+  .faq-white-question-btn {
+    padding: 18px 8px;
+  }
+
+  .card-popular-badge {
+    right: 20px;
+  }
+
+  .price-amount {
+    font-size: 30px;
+  }
+}
