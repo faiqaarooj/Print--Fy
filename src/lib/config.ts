@@ -8,8 +8,8 @@ export const ALLOWED_EMAIL_DOMAIN: string = "";
 export const ROLE_HOME: Record<string, string> = {
   // Dedicated student dashboard route
   student: "/dashboard",
-  // TODO: Add dedicated operator dashboard route when implemented
-  operator: "/",
+  // Dedicated operator dashboard route
+  operator: "/operator",
   // Default fallback
   admin: "/",
 };

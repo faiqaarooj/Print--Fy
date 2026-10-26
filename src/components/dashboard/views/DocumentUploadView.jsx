@@ -525,6 +525,52 @@ export default function DocumentUploadView({
             </div>
           )}
 
+          {/* AI Hackathon Smart Optimizer Banner */}
+          {uploadedList.length > 0 && (
+            <div
+              style={{
+                background: 'linear-gradient(135deg, rgba(244, 196, 83, 0.15) 0%, rgba(26, 26, 26, 0.95) 100%)',
+                border: '1px solid #f4c453',
+                borderRadius: '12px',
+                padding: '14px',
+                marginBottom: '14px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '12px',
+              }}
+            >
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '2px' }}>
+                  <span style={{ fontSize: '0.9rem' }}>⚡</span>
+                  <strong style={{ color: '#f4c453', fontSize: '0.85rem' }}>AI Print Optimizer Active</strong>
+                </div>
+                <p style={{ margin: 0, color: '#d1d5db', fontSize: '0.78rem' }}>
+                  Save up to 50% paper &amp; generate a 1-page exam cheat sheet!
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  window.location.hash = '#ai-studio';
+                }}
+                style={{
+                  background: '#f4c453',
+                  color: '#1a1a1a',
+                  border: 'none',
+                  borderRadius: '6px',
+                  padding: '6px 12px',
+                  fontSize: '0.78rem',
+                  fontWeight: 800,
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                Launch AI Studio →
+              </button>
+            </div>
+          )}
+
           {/* Primary CTA: Submit your Document */}
           <button
             type="button"

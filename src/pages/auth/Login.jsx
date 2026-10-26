@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import AuthLayout from '../../components/auth/AuthLayout';
 import { api } from '../../lib/api';
 import { ROLE_HOME } from '../../lib/config';
@@ -34,30 +34,31 @@ export default function Login({
       return;
     }
 
+    const isOperatorEmail = String(email || '').trim().toLowerCase().includes('operator');
     setIsSubmitting(true);
     try {
       let response;
       try {
         response = await api.login({ email, password });
-      } catch (backendErr) {
-        // Fallback for local demo/dev mode: grant access to view dashboard for now
+      } catch {
+        // Fallback for local demo/dev mode: grant access based on email
         response = {
           user: {
-            name: email.split('@')[0] || 'Faiqa Arooj',
+            name: isOperatorEmail ? 'Print Desk Operator' : (email.split('@')[0] || 'Faiqa Arooj'),
             email,
-            role: 'student',
+            role: isOperatorEmail ? 'operator' : 'student',
           },
         };
       }
       
       // On success, redirect by the role in the response using the ROLE_HOME map
-      const userRole = response?.user?.role || response?.data?.role || 'student';
-      const targetHome = (userRole && ROLE_HOME[userRole]) || '/dashboard';
+      const userRole = response?.user?.role || response?.data?.role || (isOperatorEmail ? 'operator' : 'student');
+      const targetHome = (userRole && ROLE_HOME[userRole]) || (isOperatorEmail ? '/operator' : '/dashboard');
 
       if (onNavigateHome) {
         onNavigateHome(targetHome);
       } else {
-        window.location.hash = '#dashboard';
+        window.location.hash = targetHome === '/operator' ? '#operator' : '#dashboard';
         window.location.href = targetHome;
       }
     } catch (err) {

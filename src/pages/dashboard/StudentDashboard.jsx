@@ -14,6 +14,7 @@ import DocumentUploadView from '../../components/dashboard/views/DocumentUploadV
 import PaymentCheckoutView from '../../components/dashboard/views/PaymentCheckoutView';
 import PrintQueueView from '../../components/dashboard/views/PrintQueueView';
 import UniversityFormsView from '../../components/dashboard/views/UniversityFormsView';
+import AIStudioView from '../../components/dashboard/views/AIStudioView';
 import { api } from '../../lib/api';
 import '../../components/dashboard/views/views.css';
 import './StudentDashboard.css';
@@ -24,17 +25,19 @@ export default function StudentDashboard({ onNavigateHome, onUploadDocument, onL
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [activeTab, setActiveTab] = useState(() => {
     const hash = typeof window !== 'undefined' ? window.location.hash : '';
+    if (hash.includes('ai-studio')) return 'ai-studio';
     if (hash.includes('queue')) return 'queue';
     if (hash.includes('forms')) return 'forms';
     if (hash.includes('payment')) return 'payment';
     if (hash.includes('upload')) return 'upload';
     return 'dashboard';
-  }); // 'dashboard' | 'upload' | 'payment' | 'queue' | 'forms'
+  }); // 'dashboard' | 'upload' | 'ai-studio' | 'payment' | 'queue' | 'forms'
 
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash || '';
-      if (hash.includes('queue')) setActiveTab('queue');
+      if (hash.includes('ai-studio')) setActiveTab('ai-studio');
+      else if (hash.includes('queue')) setActiveTab('queue');
       else if (hash.includes('forms')) setActiveTab('forms');
       else if (hash.includes('payment')) setActiveTab('payment');
       else if (hash.includes('upload')) setActiveTab('upload');
@@ -531,6 +534,20 @@ export default function StudentDashboard({ onNavigateHome, onUploadDocument, onL
               onUpdatePages={handleUpdateUploadPages}
               queueCount={documents.filter((d) => d.isActive && d.status !== 'Cancelled' && d.status !== 'Collected').length}
               onSubmitToPayment={handleSubmitToPayment}
+            />
+          ) : activeTab === 'ai-studio' ? (
+            /* Hackathon AI Innovation: AI Print Studio & Study Copilot */
+            <AIStudioView
+              pendingDocument={pendingCheckoutDoc || pendingUploadDocs[0]}
+              onApplyOptimization={(opt) => {
+                if (pendingCheckoutDoc) {
+                  setPendingCheckoutDoc((prev) => ({ ...prev, ...opt }));
+                } else if (pendingUploadDocs.length > 0) {
+                  setPendingCheckoutDoc({ ...pendingUploadDocs[0], ...opt });
+                }
+                showToast('AI 2-Up Optimization Applied! Reduced pages and cut print cost.');
+              }}
+              onProceedToPrint={() => setActiveTab('payment')}
             />
           ) : activeTab === 'payment' ? (
             /* Screen 3: Payment Checkout View (Figma Node 118:16469 & 143:19251) */

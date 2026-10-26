@@ -22,3 +22,31 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+backend/venv/
+venv/
+ENV/
+env/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+backend/printfy.db
+
+# Uploads
+backend/uploads/*
+!backend/uploads/.gitkeep
+

@@ -15,6 +15,7 @@ import ForgotPassword from './pages/auth/ForgotPassword';
 import VerifyOtp from './pages/auth/VerifyOtp';
 import ResetPassword from './pages/auth/ResetPassword';
 import StudentDashboard from './pages/dashboard/StudentDashboard';
+import OperatorQueue from './pages/operator/OperatorQueue';
 import './App.css';
 
 function App() {
@@ -122,12 +123,23 @@ function App() {
     );
   };
 
+  const isOperatorPage = () => {
+    const path = window.location.pathname;
+    const hash = window.location.hash;
+    return (
+      path === '/operator' ||
+      hash === '#operator' ||
+      hash === '#/operator'
+    );
+  };
+
   const initialAudience = getPricingAudienceFromLocation();
   const [authState, setAuthState] = useState(() => {
     return window.history?.state?.usr || {};
   });
 
   const [currentView, setCurrentView] = useState(() => {
+    if (isOperatorPage()) return 'operator';
     if (isDashboardPage()) return 'dashboard';
     if (isLoginPage()) return 'login';
     if (isForgotPasswordPage()) return 'forgot-password';
@@ -145,7 +157,9 @@ function App() {
   useEffect(() => {
     const handleNavigation = () => {
       const audience = getPricingAudienceFromLocation();
-      if (isDashboardPage()) {
+      if (isOperatorPage()) {
+        setCurrentView('operator');
+      } else if (isDashboardPage()) {
         setCurrentView('dashboard');
       } else if (isLoginPage()) {
         setCurrentView('login');
@@ -327,12 +341,25 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const navigateToOperator = () => {
+    setCurrentView('operator');
+    window.location.hash = '#operator';
+    try {
+      window.history.pushState({}, '', '/operator');
+    } catch {
+      // Fallback
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   if (currentView === 'login') {
     return (
       <div className="home">
         <Login
           onNavigateHome={(targetRoute) => {
-            if (targetRoute === '/dashboard' || targetRoute === '#dashboard') {
+            if (targetRoute === '/operator' || targetRoute === '#operator') {
+              navigateToOperator();
+            } else if (targetRoute === '/dashboard' || targetRoute === '#dashboard') {
               navigateToDashboard();
             } else if (targetRoute && targetRoute !== '/') {
               window.location.href = targetRoute;
@@ -444,7 +471,27 @@ function App() {
           try {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
-          } catch {}
+          } catch {
+            // ignore storage removal errors
+          }
+          setAuthState({});
+          navigateToLogin();
+        }}
+      />
+    );
+  }
+
+  if (currentView === 'operator') {
+    return (
+      <OperatorQueue
+        onNavigateHome={() => navigateToHome()}
+        onLogout={() => {
+          try {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+          } catch {
+            // ignore storage removal errors
+          }
           setAuthState({});
           navigateToLogin();
         }}

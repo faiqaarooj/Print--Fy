@@ -7,8 +7,8 @@ export const ALLOWED_EMAIL_DOMAIN = "";
 // Role-based home redirects
 export const ROLE_HOME = {
   student: "/dashboard",
-  // TODO: Add dedicated operator dashboard route when implemented
-  operator: "/",
+  // Dedicated operator dashboard route
+  operator: "/operator",
   // Default fallback
   admin: "/",
 };

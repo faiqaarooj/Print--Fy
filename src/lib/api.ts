@@ -196,12 +196,37 @@ export const api = {
   // Auth Services
   // -------------------------------------------------------------
   async login(payload: LoginPayload): Promise<ApiResponse> {
+    if (DEMO_MODE) {
+      const email = String(payload?.email || '').trim().toLowerCase();
+      const isOperator = email.includes('operator');
+      const user: UserProfile = {
+        id: isOperator ? 'op-101' : 'usr-101',
+        name: isOperator ? 'Print Desk Operator' : 'Faiqa Arooj',
+        email: payload?.email || (isOperator ? 'operator@campus.edu' : 'faiqa@campus.edu'),
+        studentId: isOperator ? undefined : 'STU-884920',
+        role: isOperator ? 'operator' : 'student',
+        initials: isOperator ? 'OP' : 'FA',
+      };
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem('printfy_current_user', JSON.stringify(user));
+          localStorage.setItem('printfy_user_role', user.role || 'student');
+        } catch {}
+      }
+      return { user };
+    }
     await this.getCsrfCookie();
     return this.post('/login', payload);
   },
 
   async logout(): Promise<void> {
     if (DEMO_MODE) {
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.removeItem('printfy_current_user');
+          localStorage.removeItem('printfy_user_role');
+        } catch {}
+      }
       return;
     }
     await this.getCsrfCookie();
@@ -225,13 +250,22 @@ export const api = {
 
   async getMe(): Promise<UserProfile> {
     if (DEMO_MODE) {
+      if (typeof window !== 'undefined') {
+        try {
+          const stored = localStorage.getItem('printfy_current_user');
+          if (stored) {
+            const parsed = JSON.parse(stored);
+            if (parsed && parsed.role) return parsed;
+          }
+        } catch {}
+      }
       return {
         id: 'usr-101',
         name: 'Faiqa Arooj',
         email: 'faiqa@campus.edu',
         studentId: 'STU-884920',
         initials: 'FA',
-        // role / title is omitted if backend does not send it
+        role: 'student',
       };
     }
     const response = await this.get<UserProfile>('/me');
@@ -346,5 +380,36 @@ export const api = {
     }
     const res = await this.get<DeskInfo>('/desk');
     return res.data || {};
+  },
+
+  // -------------------------------------------------------------
+  // AI Print Studio & Hackathon Copilot
+  // -------------------------------------------------------------
+  async analyzeDocument(params: {
+    fileName: string;
+    pages: number;
+    colorMode?: string;
+    duplex?: string;
+  }) {
+    const res = await this.post('/ai/analyze-document', {
+      file_name: params.fileName,
+      pages: params.pages,
+      color_mode: params.colorMode || 'B&W',
+      duplex: params.duplex || 'Single-sided',
+    });
+    return res.data;
+  },
+
+  async askStudyCopilot(prompt: string, contextFile?: string) {
+    const res = await this.post('/ai/study-copilot', {
+      prompt,
+      context_file: contextFile || 'Document.pdf',
+    });
+    return res.data;
+  },
+
+  async getRushPrediction() {
+    const res = await this.get('/ai/rush-prediction');
+    return res.data;
   },
 };

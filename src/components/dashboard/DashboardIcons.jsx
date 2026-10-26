@@ -1,4 +1,3 @@
-import React from 'react';
 
 export function LayoutDashboardIcon({ size = 18, color = 'currentColor', className = '' }) {
   return (
@@ -67,6 +66,16 @@ export function AlertTriangleIcon({ size = 18, color = 'currentColor', className
       <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
       <line x1="12" y1="9" x2="12" y2="13" />
       <line x1="12" y1="17" x2="12.01" y2="17" />
+    </svg>
+  );
+}
+
+export function AlertCircleIcon({ size = 18, color = 'currentColor', className = '' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="12" y1="8" x2="12" y2="12" />
+      <line x1="12" y1="16" x2="12.01" y2="16" />
     </svg>
   );
 }
@@ -283,6 +292,37 @@ export function LockIcon({ size = 15, color = 'currentColor', className = '' }) 
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
       <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    </svg>
+  );
+}
+
+export function EyeIcon({ size = 16, color = 'currentColor', className = '' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
+
+export function ExternalLinkIcon({ size = 16, color = 'currentColor', className = '' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
+  );
+}
+
+export function SparklesIcon({ size = 18, color = 'currentColor', className = '' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+      <path d="M5 3v4" />
+      <path d="M19 17v4" />
+      <path d="M3 5h4" />
+      <path d="M17 19h4" />
     </svg>
   );
 }

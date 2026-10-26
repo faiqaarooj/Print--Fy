@@ -9,6 +9,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   LogoutIcon,
+  SparklesIcon,
 } from './DashboardIcons';
 import './SidebarNav.css';
 
@@ -30,6 +31,12 @@ export default function SidebarNav({
       id: 'upload',
       label: 'Upload your Document',
       icon: UploadIcon,
+    },
+    {
+      id: 'ai-studio',
+      label: 'AI Studio & Copilot',
+      icon: SparklesIcon,
+      isAi: true,
     },
     {
       id: 'payment',
@@ -132,7 +139,7 @@ export default function SidebarNav({
                   <div className="sidebar-btn-icon-wrapper">
                     <Icon
                       size={18}
-                      color={isActive ? '#ec11bc' : '#f1eef1'}
+                      color={isActive ? (item.isAi ? '#f4c453' : '#ec11bc') : (item.isAi ? '#f4c453' : '#f1eef1')}
                       className="sidebar-btn-icon"
                     />
                   </div>
@@ -146,8 +153,26 @@ export default function SidebarNav({
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -6 }}
                         transition={{ duration: 0.18 }}
+                        style={{ display: 'flex', alignItems: 'center' }}
                       >
                         {item.label}
+                        {item.isAi && (
+                          <span
+                            style={{
+                              marginLeft: '6px',
+                              background: '#f4c453',
+                              color: '#1a1a1a',
+                              fontSize: '0.65rem',
+                              fontWeight: 800,
+                              padding: '1px 5px',
+                              borderRadius: '4px',
+                              textTransform: 'uppercase',
+                              letterSpacing: '0.05em',
+                            }}
+                          >
+                            AI
+                          </span>
+                        )}
                       </motion.span>
                     )}
                   </AnimatePresence>
