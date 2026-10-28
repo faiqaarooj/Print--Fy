@@ -27,8 +27,24 @@ export const MOCK_OPERATOR_JOBS: QueueJob[] = [
     canArrive: false, // MOCK:
   },
   {
+    id: 'doc-active-faiqa',
+    position: 2,
+    name: 'Faiqa Arooj',
+    studentLabel: 'Faiqa Arooj (STU-884920)',
+    fileName: 'Thesis_Final_Draft.pdf',
+    pages: 12,
+    colorMode: 'B&W',
+    duplex: 'Double-sided',
+    slot: '10:00 AM',
+    submittedAt: '2026-10-26T09:45:00Z',
+    status: 'queued',
+    paymentStatus: 'paid',
+    amountDue: 0,
+    canArrive: true,
+  },
+  {
     id: 'job-op-02', // MOCK:
-    position: 2, // MOCK:
+    position: 3, // MOCK:
     name: 'Sara Ali', // MOCK:
     fileName: 'Lecture_Notes.pdf', // MOCK:
     pages: 8, // MOCK:
@@ -182,11 +198,48 @@ export const MOCK_OPERATOR_JOBS: QueueJob[] = [
 ];
 
 /**
- * Returns the operator jobs. In DEMO_MODE, returns mock list.
- * TODO: backend: operator endpoint returning all jobs with full details.
+ * Returns the operator jobs. In DEMO_MODE, returns mock list merged with live student jobs.
  */
 export function getMockOperatorJobs(): QueueJob[] {
-  return [...MOCK_OPERATOR_JOBS];
+  let jobs = [...MOCK_OPERATOR_JOBS];
+  try {
+    if (typeof window !== 'undefined') {
+      const raw = localStorage.getItem('printfy_live_queue_jobs');
+      if (raw) {
+        const liveQueue = JSON.parse(raw);
+        if (Array.isArray(liveQueue)) {
+          liveQueue.forEach((userJob: any) => {
+            if (userJob.isUserJob) {
+              const existingIdx = jobs.findIndex((j) => String(j.id) === String(userJob.id));
+              const formattedJob: QueueJob = {
+                id: userJob.id,
+                name: userJob.name || 'Faiqa Arooj',
+                studentLabel: userJob.name ? `${userJob.name} (STU-884920)` : 'Faiqa Arooj (STU-884920)',
+                fileName: userJob.fileName || userJob.name || 'Document.pdf',
+                pages: userJob.pages || 1,
+                colorMode: userJob.colorMode || 'B&W',
+                duplex: userJob.duplex || 'Double-sided',
+                slot: userJob.slot || '10:00 AM',
+                submittedAt: userJob.submittedAt || new Date().toISOString(),
+                status: userJob.status || 'queued',
+                paymentStatus: userJob.paymentStatus || 'paid',
+                amountDue: userJob.amountDue || 0,
+                canArrive: userJob.canArrive !== undefined ? userJob.canArrive : true,
+              };
+              if (existingIdx >= 0) {
+                jobs[existingIdx] = { ...jobs[existingIdx], ...formattedJob };
+              } else {
+                jobs.unshift(formattedJob);
+              }
+            }
+          });
+        }
+      }
+    }
+  } catch (e) {
+    console.warn('Failed to merge live student jobs into operator queue', e);
+  }
+  return jobs;
 }
 
 /**

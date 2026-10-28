@@ -21,6 +21,29 @@ import './StudentDashboard.css';
 
 const STORAGE_KEY = 'printfy_student_documents';
 
+export const DEFAULT_STUDENT_DOCUMENT = {
+  id: 'doc-active-faiqa',
+  name: 'Thesis_Final_Draft.pdf',
+  fileName: 'Thesis_Final_Draft.pdf',
+  pages: 12,
+  printedPages: 0,
+  status: 'queued',
+  colorMode: 'B&W',
+  tray: 'Tray 1',
+  duplex: 'Double-sided',
+  copies: 1,
+  pin: '4829',
+  pickupTime: '10:00 AM',
+  slot: '10:00 AM',
+  uploadedAt: 'Today, 9:45 AM',
+  cost: 120,
+  amountDue: 0,
+  paymentMethod: 'Paid Online',
+  paymentStatus: 'paid',
+  speed: 68,
+  isActive: true,
+};
+
 export default function StudentDashboard({ onNavigateHome, onUploadDocument, onLogout }) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [activeTab, setActiveTab] = useState(() => {
@@ -84,21 +107,20 @@ export default function StudentDashboard({ onNavigateHome, onUploadDocument, onL
   // Payment Screen (118:16469) target document
   const [pendingCheckoutDoc, setPendingCheckoutDoc] = useState(null);
 
-  // Student documents store: default to [] or load from localStorage
-  // This satisfies "build a dashboard where nothing is here !" when fresh
+  // Student documents store: seeded with default active document or loaded from localStorage
   const [documents, setDocuments] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) {
+        if (Array.isArray(parsed) && parsed.length > 0) {
           return parsed.filter((d) => d.id !== 'doc-init-1' && d.id !== 'upl-init-1');
         }
       }
     } catch (e) {
       console.warn('Failed to load user documents from localStorage', e);
     }
-    return []; // Empty by default matching Figma node 174:805
+    return [DEFAULT_STUDENT_DOCUMENT];
   });
 
   // Save documents back to localStorage whenever modified
@@ -126,8 +148,11 @@ export default function StudentDashboard({ onNavigateHome, onUploadDocument, onL
     }, 3200);
   };
 
-  // Find active print job (if any)
-  const activeJob = documents.find((doc) => doc.isActive && doc.status !== 'Collected');
+  // Find active print job (if any) or fallback to first student document
+  const activeJob =
+    documents.find((doc) => doc.isActive && doc.status !== 'Collected') ||
+    documents[0] ||
+    DEFAULT_STUDENT_DOCUMENT;
 
   // Real-time printing ticker simulation (only runs when job is actively printing)
   useEffect(() => {
@@ -236,7 +261,7 @@ export default function StudentDashboard({ onNavigateHome, onUploadDocument, onL
     );
   };
 
-  // Proceed from Upload Screen (111:14114) to Payment Screen (118:16469)
+  // Proceed from Upload Screen (111:14114) to Payment Screen (118:16469) or Direct Queue
   const handleSubmitToPayment = (chosenTime, options = {}) => {
     if (pendingUploadDocs.length === 0) {
       showToast('Please upload or drop at least one document first.');
@@ -252,6 +277,16 @@ export default function StudentDashboard({ onNavigateHome, onUploadDocument, onL
       ...options,
       pickupTime: timeToUse,
     };
+
+    if (options.quickQueue) {
+      handlePayAndSubmit({
+        ...targetDoc,
+        paymentStatus: 'unpaid',
+        paymentMethod: 'Cash at Desk',
+      });
+      return;
+    }
+
     setPendingCheckoutDoc(targetDoc);
     setActiveTab('payment');
     showToast(`Arrival time set to ${timeToUse}. Proceeding to payment.`);
@@ -270,7 +305,7 @@ export default function StudentDashboard({ onNavigateHome, onUploadDocument, onL
     const realRate = checkoutDetails.colorMode === 'Color' ? 15 : 10;
     const realCopies = Math.max(1, Number(checkoutDetails.copies || 1));
     const realCost = checkoutDetails.cost != null ? checkoutDetails.cost : realPages * realCopies * realRate;
-    const slotTime = checkoutDetails.pickupTime || '9:00 AM';
+    const slotTime = checkoutDetails.pickupTime || '10:00 AM';
 
     // It should ONLY calculate the amount which needs to be paid:
     // If online payment (JazzCash / QR), amountDue is 0 (already paid).
@@ -312,10 +347,13 @@ export default function StudentDashboard({ onNavigateHome, onUploadDocument, onL
     // DIRECTLY ENTER THE LIVE PRINT QUEUE (Figma Node 149:20727)
     setActiveTab('queue');
     if (isDeskPayment) {
-      showToast(`Order placed in queue! Pay Rs. ${newJob.amountDue} at Desk A to unlock your print.`);
+      showToast(`Document queued! Pay Rs. ${newJob.amountDue} at Desk A to collect your print.`);
     } else {
-      showToast(`Payment confirmed! Pickup PIN: ${freshPin}. You are now in the live queue.`);
+      showToast(`Payment confirmed! Pickup PIN: ${freshPin}. Your document is now in the live queue.`);
     }
+
+    // Sync live queue mock so PrintQueueView and OperatorQueue immediately show this document
+    api.getQueue(newJob).catch(() => {});
   };
 
   const activePercent = activeJob

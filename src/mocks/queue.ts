@@ -14,19 +14,107 @@ import { sortAndPositionQueue, QueueJob } from '../lib/queueOrder';
 
 const QUEUE_STORAGE_KEY = 'printfy_live_queue_jobs';
 
+export const DEFAULT_STUDENT_JOB: QueueJob = {
+  id: 'doc-active-faiqa',
+  slot: '10:00 AM',
+  submittedAt: new Date(Date.now() - 15 * 60 * 1000).toISOString(),
+  status: 'queued',
+  isUserJob: true,
+  fileName: 'Thesis_Final_Draft.pdf',
+  name: 'Thesis_Final_Draft.pdf',
+  genericAlias: 'You',
+  pages: 12,
+  colorMode: 'B&W',
+  duplex: 'Double-sided',
+  canArrive: true,
+  canCancel: true,
+  paymentStatus: 'paid',
+  amountDue: 0,
+  estimatedWaitMinutes: 6,
+  progress: null,
+};
+
+export const DEFAULT_CAMPUS_QUEUE: QueueJob[] = [
+  {
+    id: 'job-sample-01',
+    slot: '9:30 AM',
+    submittedAt: new Date(Date.now() - 45 * 60 * 1000).toISOString(),
+    status: 'printing',
+    isUserJob: false,
+    fileName: 'Lecture_Handout.pdf',
+    name: 'Lecture_Handout.pdf',
+    genericAlias: 'Student A',
+    pages: 8,
+    colorMode: 'B&W',
+    duplex: 'Single-sided',
+    canArrive: false,
+    canCancel: false,
+    paymentStatus: 'paid',
+    amountDue: 0,
+    estimatedWaitMinutes: 3,
+    progress: 45,
+  },
+  DEFAULT_STUDENT_JOB,
+  {
+    id: 'job-sample-03',
+    slot: '10:30 AM',
+    submittedAt: new Date(Date.now() - 10 * 60 * 1000).toISOString(),
+    status: 'queued',
+    isUserJob: false,
+    fileName: 'Engineering_Drawings.pdf',
+    name: 'Engineering_Drawings.pdf',
+    genericAlias: 'Student B',
+    pages: 15,
+    colorMode: 'Color',
+    duplex: 'Single-sided',
+    canArrive: false,
+    canCancel: false,
+    paymentStatus: 'paid',
+    amountDue: 0,
+    estimatedWaitMinutes: 9,
+    progress: null,
+  },
+  {
+    id: 'job-sample-04',
+    slot: '11:00 AM',
+    submittedAt: new Date(Date.now() - 5 * 60 * 1000).toISOString(),
+    status: 'queued',
+    isUserJob: false,
+    fileName: 'Assignment_Sheets.pdf',
+    name: 'Assignment_Sheets.pdf',
+    genericAlias: 'Student C',
+    pages: 6,
+    colorMode: 'B&W',
+    duplex: 'Double-sided',
+    canArrive: false,
+    canCancel: false,
+    paymentStatus: 'unpaid',
+    amountDue: 60,
+    estimatedWaitMinutes: 12,
+    progress: null,
+  },
+];
+
 function loadStoredQueue(): QueueJob[] {
   try {
     if (typeof window !== 'undefined') {
       const raw = localStorage.getItem(QUEUE_STORAGE_KEY);
       if (raw) {
         const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) return parsed;
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          // Verify that a user job exists in the queue; if not, merge DEFAULT_STUDENT_JOB
+          const hasUserJob = parsed.some((j) => j.isUserJob || j.id === DEFAULT_STUDENT_JOB.id);
+          if (!hasUserJob) {
+            parsed.push(DEFAULT_STUDENT_JOB);
+          }
+          return parsed;
+        }
       }
     }
   } catch (e) {
     console.warn('Failed to load queue from storage', e);
   }
-  return [];
+  return [...DEFAULT_CAMPUS_QUEUE];
 }
 
 function saveStoredQueue(jobs: QueueJob[]) {
@@ -39,12 +127,12 @@ function saveStoredQueue(jobs: QueueJob[]) {
   }
 }
 
-// Live dynamic queue: starts empty by default, only contains jobs actually added
+// Live dynamic queue: seeded with default campus queue including the student's document
 let dynamicMockJobs: QueueJob[] = loadStoredQueue();
 
 /**
  * Returns sorted live queue, integrating the user's active job if provided.
- * Mock data is completely removed; only shows the specific jobs added.
+ * Ensures the student document is always prominently placed in the queue.
  */
 export function getMockQueue(userJob?: Partial<QueueJob> | null): QueueJob[] {
   dynamicMockJobs = loadStoredQueue();
@@ -52,7 +140,7 @@ export function getMockQueue(userJob?: Partial<QueueJob> | null): QueueJob[] {
 
   if (userJob && userJob.id) {
     const rawStatus = String(userJob.status || 'queued').toLowerCase().trim();
-    const normalizedStatus: JobStatus = (
+    const normalizedStatus: any = (
       rawStatus === 'printing' ? 'printing' :
       rawStatus === 'almost_your_turn' ? 'almost_your_turn' :
       rawStatus === 'waiting_for_student' ? 'waiting_for_student' :
@@ -83,22 +171,34 @@ export function getMockQueue(userJob?: Partial<QueueJob> | null): QueueJob[] {
       pages: realPages,
       colorMode: userJob.colorMode || 'B&W',
       duplex: userJob.duplex || (userJob as any).duplexMode || 'Single-sided',
-      canArrive: userJob.canArrive !== undefined ? userJob.canArrive : false,
+      canArrive: userJob.canArrive !== undefined ? userJob.canArrive : true,
       canCancel: userJob.canCancel !== undefined ? userJob.canCancel : true,
       paymentStatus: isPaid ? 'paid' : 'unpaid',
       amountDue: calculatedAmountDue,
-      estimatedWaitMinutes: userJob.estimatedWaitMinutes != null ? userJob.estimatedWaitMinutes : null,
+      estimatedWaitMinutes: userJob.estimatedWaitMinutes != null ? userJob.estimatedWaitMinutes : 6,
       progress: userJob.progress ?? null,
     };
 
     // Remove any previous record of this job and save new record
-    combined = combined.filter((j) => String(j.id) !== String(userJob.id));
+    combined = combined.filter((j) => String(j.id) !== String(userJob.id) && !j.isUserJob);
     combined.push(userQueueJob);
     dynamicMockJobs = combined;
     saveStoredQueue(dynamicMockJobs);
+  } else {
+    // If no specific userJob passed, ensure there is at least one user job in the queue
+    const hasUserJob = combined.some((j) => j.isUserJob);
+    if (!hasUserJob) {
+      combined.push(DEFAULT_STUDENT_JOB);
+      dynamicMockJobs = combined;
+      saveStoredQueue(dynamicMockJobs);
+    }
   }
 
   return sortAndPositionQueue(combined);
+}
+
+export function addMockQueueJob(newJob: Partial<QueueJob>): QueueJob[] {
+  return getMockQueue(newJob);
 }
 
 /**

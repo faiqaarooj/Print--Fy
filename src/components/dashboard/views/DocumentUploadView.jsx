@@ -571,33 +571,72 @@ export default function DocumentUploadView({
             </div>
           )}
 
-          {/* Primary CTA: Submit your Document */}
-          <button
-            type="button"
-            onClick={() => {
-              if (uploadedList.length === 0 || !selectedTimeSlot) return;
-              onSubmitToPayment(selectedTimeSlot, {
-                copies: numCopies,
-                colorMode,
-                duplexMode,
-                binding: isBindingEnabled,
-                cost: realTimePrice,
-              });
-            }}
-            className={`submit-document-master-btn ${
-              uploadedList.length > 0 && selectedTimeSlot ? 'ready' : 'disabled'
-            }`}
-            disabled={uploadedList.length === 0 || !selectedTimeSlot}
-            aria-disabled={uploadedList.length === 0 || !selectedTimeSlot}
-          >
-            <span>
-              {uploadedList.length === 0
-                ? 'Drop or browse a file above'
-                : !selectedTimeSlot
-                ? 'Choose arrival time (till 3:30 PM)'
-                : `Proceed to Payment (${selectedTimeSlot}) →`}
-            </span>
-          </button>
+          {/* Action Buttons: Quick Dispatch or Proceed to Payment */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {uploadedList.length > 0 && (
+              <button
+                type="button"
+                onClick={() => {
+                  const time = selectedTimeSlot || '10:00 AM';
+                  onSubmitToPayment(time, {
+                    copies: numCopies,
+                    colorMode,
+                    duplexMode,
+                    binding: isBindingEnabled,
+                    cost: realTimePrice,
+                    quickQueue: true,
+                  });
+                }}
+                style={{
+                  width: '100%',
+                  padding: '13px 18px',
+                  borderRadius: '12px',
+                  background: '#f4c453',
+                  color: '#1a1a1a',
+                  border: 'none',
+                  fontWeight: 800,
+                  fontSize: '0.92rem',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  boxShadow: '0 4px 14px rgba(244, 196, 83, 0.3)',
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                <span>⚡ Add Directly to Queue (Pay Rs. {realTimePrice} at Desk A) →</span>
+              </button>
+            )}
+
+            {/* Primary CTA: Submit your Document to Payment */}
+            <button
+              type="button"
+              onClick={() => {
+                if (uploadedList.length === 0 || !selectedTimeSlot) return;
+                onSubmitToPayment(selectedTimeSlot, {
+                  copies: numCopies,
+                  colorMode,
+                  duplexMode,
+                  binding: isBindingEnabled,
+                  cost: realTimePrice,
+                });
+              }}
+              className={`submit-document-master-btn ${
+                uploadedList.length > 0 && selectedTimeSlot ? 'ready' : 'disabled'
+              }`}
+              disabled={uploadedList.length === 0 || !selectedTimeSlot}
+              aria-disabled={uploadedList.length === 0 || !selectedTimeSlot}
+            >
+              <span>
+                {uploadedList.length === 0
+                  ? 'Drop or browse a file above'
+                  : !selectedTimeSlot
+                  ? 'Choose arrival time (till 3:30 PM)'
+                  : `Proceed to Payment Checkout (${selectedTimeSlot}) →`}
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
